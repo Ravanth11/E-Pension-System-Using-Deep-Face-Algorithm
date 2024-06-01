@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pension System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            
+        }
+
+        .left-panel {
+            width: 70px;
+            height: 100vh; /* Adjust the height of the left panel as needed */
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: width 0.3s; /* Smooth transition for width change */
+        }
+
+        .left-panel:hover {
+            width: 250px; /* Expand width on hover */
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            transition: margin-left 0.3s; /* Smooth transition for margin change */
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px; /* Increased spacing between items */
+            display: flex; /* Use flexbox to align icon and text */
+            align-items: center; /* Align items vertically */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            position: relative; /* Position for absolute text */
+            color:white;
+        }
+
+        .icon {
+            margin-right: 20px; /* Space between icon and text */
+            margin-bottom: 15px; /* Increased spacing between icons */
+            color:white;
+        }
+
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0; /* Increased margin */
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px; /* Spacing for important items */
+        }
+
+        .icon-text {
+            display: none; /* Hide the text by default */
+            position: absolute; /* Position the text absolutely */
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            color: white; /* Adjust the color of the text */
+            padding: 5px 10px; /* Padding for the text */
+            border-radius: 5px; /* Rounded corners */
+            pointer-events: none; /* Ignore pointer events to allow clicking through */
+            transition: opacity 0.3s; /* Smooth transition for opacity change */
+        }
+        
+        li:hover .icon-text {
+            display: inline-block; /* Show text on icon hover */
+            opacity: 1; /* Show the text */
+            left: 70px; /* Adjust the left position as needed */
+            top: 50%; /* Align text vertically */
+            transform: translateY(-50%);
+        }
+        /* CSS */
+
+
+        
+        
+
+        .icon:hover + .content {
+            margin-left: 250px; /* Move content to the right when left panel is visible */
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 20px;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .custom-cursor {
+            cursor: url('{% static 'navigation.png' %}'), auto; /* Use a custom cursor image */
+        }
+        
+        
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        .feature p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body style="background: url('{% static 'back1.jpg' %}') no-repeat center; background-size: cover; min-height: 100vh; display: flex; align-items: center; justify-content: center; cursor: url('{% static 'navigation.png' %}'),auto;" >
+
+    <div class="left-panel">
+        <ul>
+            <li class="important" onclick="scrollToSection('home')"><i class="fas fa-home icon"></i><span class="icon-text">Home</span></li>
+            <li onclick="scrollToSection('dashboard')"><a href="{% url 'webcam_view' %}"><i class="fas fa-chart-line icon"></i><span class="icon-text">Dashboard</span></li>
+            <li onclick="scrollToSection('account')"><a href="{% url 'accounts' %}"><i class="fas fa-user icon"></i><span class="icon-text">Account</span></li>
+            <li onclick="scrollToSection('payments')"><a href="{% url 'homepage' %}"><i class="fas fa-money-bill icon"></i><span class="icon-text">Payments</span></li>
+            <li onclick="scrollToSection('notifications')"><a href="{% url 'notify' %}"><i class="fas fa-bell icon"></i><span class="icon-text">Notifications</span></li>
+            <li onclick="scrollToSection('settings')"><a href="{% url 'setting' %}"><i class="fas fa-cog icon"></i><span class="icon-text">Settings</span></li>
+            <li class="separator"></li>
+            <li onclick="scrollToSection('schedule')"><i class="fas fa-calendar-alt icon"></i><span class="icon-text">Schedule</span></li>
+            <li onclick="scrollToSection('documents')"><a href="{% url 'documents' %}"><i class="fas fa-file-alt icon"></i><span class="icon-text">Documents</span></li>
+            <li onclick="scrollToSection('agreements')"><i class="fas fa-handshake icon"></i><span class="icon-text">Agreements</span></li>
+            <li onclick="scrollToSection('about')"><a href="{% url 'about' %}"><i class="fas fa-info-circle icon"></i><span class="icon-text">About</span></a></li>
+            <li onclick="scrollToSection('contact')"><a href="{% url 'contacts' %}"><i class="fas fa-phone-alt icon"></i><span class="icon-text">Contact</span></li>
+            <li onclick="scrollToSection('logout)"><a href="{% url 'logout' %}"><i class="fas fa-sign-in-alt icon"></i><span class="icon-text">logout</span></li>
+
+            <li onclick="scrollToSection('signup')"><a href="{% url 'register' %}"><i class="fas fa-user-plus icon"></i><span class="icon-text">Sign Up</span></a></li>
+            <!-- Add more functionalities here -->
+        </ul>
+    </div>
+    <div class="content">
+        <h1 style="position:relative;text-align:center"> E PENSION WITH FACE</h1>
+        <h2 id="home">Home Section</h2>
+        
+        <div class="feature">
+            <h3>Welcome to E-Pension System</h3>
+            <p>Our E-Pension System is designed to provide a <strong>convenient and secure platform</strong> for managing your pension funds online. Whether you're a retiree or a pensioner, our system is here to help you <strong>easily access and manage</strong> your pension accounts from anywhere, at any time.</p>
+        </div>
+        <div class="feature">
+           
+            <h3>Our Services</h3>
+            <p>- <strong>Pension Fund Management</strong>: Easily manage and track your pension fund.<br>
+                - <strong>Account Management</strong>: Update your personal information and manage your account details.<br>
+                - <strong>Payment Tracking</strong>: Track your pension payments and view payment history.</p>
+        </div>
+        <div class="feature">
+            <h3>Benefits</h3>
+            <p>- <strong>Convenience</strong>: Access your pension account anytime, anywhere.<br>
+                - <strong>Security</strong>: Your data is encrypted and secure.<br>
+                - <strong>User-Friendly</strong>: Easy-to-use interface for seamless navigation.</p>
+        </div>
+        <div class="feature">
+            <h3>Get Started</h3>
+            <p>Sign up today to start managing your pension funds online. If you're already a member, simply log in to access your account.</p>
+        </div>
+    </div>
+</body>
+
+</html>

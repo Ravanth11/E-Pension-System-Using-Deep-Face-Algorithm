@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pension System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('{% static 'back1.jpg' %}') no-repeat center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: center;
+        }
+    
+        .left-panel {
+            width: 70px;
+            min-width: 70px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: width 0.3s;
+        }
+    
+        .left-panel:hover {
+            width: 250px;
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            transition: margin-left 0.3s;
+        }
+    
+        .container {
+            position: relative;
+            left: 0; /* Adjust this value based on the width of the left panel when it expands */
+            margin-left: 70px; /* Adjust this value based on the width of the left panel */
+        }
+    
+        h1 {
+            margin-top: 0;
+        }
+    
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            color: white;
+        }
+    
+        .icon {
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+    
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0;
+        }
+    
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    
+        .icon-text {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+    
+        li:hover .icon-text {
+            display: inline-block;
+            opacity: 1;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    
+        .icon:hover + .content {
+            margin-left: 250px;
+        }
+    
+        .feature {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 20px;
+        }
+    
+        .feature:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    
+        .feature h3 {
+            margin-top: 0;
+        }
+    
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+    
+        .feature {
+            width: calc(33.33% - 20px);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .feature h2 {
+            margin-top: 0;
+        }
+    
+        .feature p {
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <div class="left-panel">
+        <ul>
+            <li class="important" onclick="scrollToSection('home')"><i class="fas fa-home icon"></i><span class="icon-text">Home</span></li>
+            <li onclick="scrollToSection('dashboard')"><i class="fas fa-chart-line icon"></i><span class="icon-text">Dashboard</span></li>
+            <li onclick="scrollToSection('account')"><i class="fas fa-user icon"></i><span class="icon-text">Account</span></li>
+            <li onclick="scrollToSection('payments')"><i class="fas fa-money-bill icon"></i><span class="icon-text">Payments</span></li>
+            <li onclick="scrollToSection('notifications')"><i class="fas fa-bell icon"></i><span class="icon-text">Notifications</span></li>
+            <li onclick="scrollToSection('settings')"><i class="fas fa-cog icon"></i><span class="icon-text">Settings</span></li>
+            <li class="separator"></li>
+            <li onclick="scrollToSection('schedule')"><i class="fas fa-calendar-alt icon"></i><span class="icon-text">Schedule</span></li>
+            <li onclick="scrollToSection('documents')"><i class="fas fa-file-alt icon"></i><span class="icon-text">Documents</span></li>
+            <li onclick="scrollToSection('agreements')"><i class="fas fa-handshake icon"></i><span class="icon-text">Agreements</span></li>
+            <li onclick="scrollToSection('about')"><a href="{% url 'about' %}"><i class="fas fa-info-circle icon"></i><span class="icon-text">About</span></a></li>
+            <li onclick="scrollToSection('contact')"><i class="fas fa-phone-alt icon"></i><span class="icon-text">Contact</span></li>
+
+            <li onclick="scrollToSection('signup')"><a href="{% url 'register' %}"><i class="fas fa-user-plus icon"></i><span class="icon-text">Sign Up</span></a></li>
+            <!-- Add more functionalities here -->
+        </ul>
+    </div>
+
+<div class="container">
+    <h1>Welcome to the E-Pension System</h1>
+    
+    <p>Our E-Pension System is designed to provide a convenient and secure platform for managing your pension funds online. Whether you're a retiree or a pensioner, our system is here to help you easily access and manage your pension accounts from anywhere, at any time.</p>
+    
+    <div class="features">
+        <div class="feature">
+            <h2>Pension Fund Management</h2>
+            <p>Easily manage and track your pension fund online.</p>
+        </div>
+        <div class="feature">
+            <h2>Account Management</h2>
+            <p>Update your personal information and manage your account details conveniently.</p>
+        </div>
+        <div class="feature">
+            <h2>Payment Tracking</h2>
+            <p>Track your pension payments and view payment history securely.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

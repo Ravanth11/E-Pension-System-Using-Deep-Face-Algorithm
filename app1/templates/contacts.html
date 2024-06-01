@@ -1,0 +1,326 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pension System - Contact Us</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left-panel {
+            width: 70px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: width 0.3s;
+        }
+
+        .left-panel:hover {
+            width: 250px;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            transition: margin-left 0.3s;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0;
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .icon-text {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .icon:hover .icon-text {
+            display: inline-block;
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        .icon:hover + .content {
+            margin-left: 250px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 30%; /* Two cards per row with 20px margin on each side */
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            display: inline-block; 
+}
+
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .faq-item {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            font-weight: bold;
+            display: none;
+            margin-top: 10px;
+            color: #82cfe9;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            color: #a3e0f4;
+        }
+        
+        .icon {
+            margin-right: 20px; /* Space between icon and text */
+            margin-bottom: 15px; /* Increased spacing between icons */
+            color:white;
+        }
+
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0; /* Increased margin */
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px; /* Spacing for important items */
+        }
+
+        .icon-text {
+            display: none; /* Hide the text by default */
+            position: absolute; /* Position the text absolutely */
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            color: white; /* Adjust the color of the text */
+            padding: 5px 10px; /* Padding for the text */
+            border-radius: 5px; /* Rounded corners */
+            pointer-events: none; /* Ignore pointer events to allow clicking through */
+            transition: opacity 0.3s; /* Smooth transition for opacity change */
+        }
+        
+        li:hover .icon-text {
+            display: inline-block; /* Show text on icon hover */
+            opacity: 1; /* Show the text */
+            left: 70px; /* Adjust the left position as needed */
+            top: 50%; /* Align text vertically */
+            transform: translateY(-50%);
+        }
+        
+    </style>
+</head>
+
+<body style="background: url('{% static 'back1.jpg' %}') no-repeat center; background-size: cover; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="left-panel">
+        <ul>
+            <li onclick="scrollToSection('home')"><i class="fas fa-home icon"></i><span class="icon-text">Home</span></li>
+            <li onclick="scrollToSection('dashboard')"><i class="fas fa-chart-line icon"></i><span class="icon-text">Dashboard</span></li>
+            <li onclick="scrollToSection('account')"><i class="fas fa-user icon"></i><span class="icon-text">Account</span></li>
+            <li onclick="scrollToSection('payments')"><i class="fas fa-money-bill icon"></i><span class="icon-text">Payments</span></li>
+            <li onclick="scrollToSection('notifications')"><i class="fas fa-bell icon"></i><span class="icon-text">Notifications</span></li>
+            <li onclick="scrollToSection('settings')"><i class="fas fa-cog icon"></i><span class="icon-text">Settings</span></li>
+            <li class="separator"></li>
+            <li class="important" onclick="scrollToSection('documents')"><i class="fas fa-file-alt icon"></i><span class="icon-text">Documents</span></li>
+            <li onclick="scrollToSection('agreements')"><i class="fas fa-handshake icon"></i><span class="icon-text">Agreements</span></li>
+            <li onclick="scrollToSection('about')"><i class="fas fa-info-circle icon"></i><span class="icon-text">About</span></li>
+            <li onclick="scrollToSection('contact')"><i class="fas fa-phone-alt icon"></i><span class="icon-text">Contact</span></li>
+            <li onclick="scrollToSection('login')"><i class="fas fa-sign-in-alt icon"></i><span class="icon-text">Login</span></li>
+            <li onclick="scrollToSection('signup')"><i class="fas fa-user-plus icon"></i><span class="icon-text">Sign Up</span></li>
+        </ul>
+    </div>
+    <div class="content">
+        <center><h3>Contact Us</h3></center>
+        <div class="card-container">
+            <div class="card">
+                <h3>Customer Service</h3>
+                <p>For general inquiries and support</p>
+                <a href="tel:123-456-7890">Call</a>
+            </div>
+            <div class="card">
+                <h3>Technical Support</h3>
+                <p>For technical assistance</p>
+                <a href="tel:123-456-7890">Call</a>
+            </div>
+            <div class="card">
+                <h3>Feedback</h3>
+                <p>Send us your feedback</p>
+                <a href="mailto:feedback@example.com">Email</a>
+            </div>
+            <div class="card">
+                <h3>Address</h3>
+                <p>123 Street Name, City, Country</p>
+                <a href="https://www.google.com/maps/place/Vellore+Institute+of+Technology/@12.9812712,79.1661297,15z/data=!4m6!3m5!1s0x3bad479f0ccbe067:0xfef222e5f36ecdeb!8m2!3d12.9692232!4d79.1559336!16zL20vMDZzcHNo?entry=ttu" target="_blank">View Map</a>
+            </div>
+        </div>
+
+        <center><h3>FAQ Section</h3></center>
+        <div class="faq-container">
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">How do I apply for pension benefits?</div>
+                <div class="faq-answer">You can apply for pension benefits by filling out the application form available on our website and submitting it along with the required documents.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">What documents do I need to submit with my pension application?</div>
+                <div class="faq-answer">You will need to submit a copy of your identification, proof of age, proof of employment, and any other relevant documents requested in the application form.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">How long does it take to process a pension application?</div>
+                <div class="faq-answer">The processing time for a pension application varies depending on various factors, but it usually takes around 4-6 weeks.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">Can I apply for pension benefits online?</div>
+                <div class="faq-answer">Yes, you can apply for pension benefits online through our website. Simply fill out the online application form and submit it along with the required documents.</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function zoomIn(element) {
+            element.style.transform = 'scale(1.05)';
+            element.style.transition = 'transform 0.3s';
+        }
+
+        function zoomOut(element) {
+            element.style.transform = 'scale(1)';
+        }
+
+        function toggleFAQ(faqItem) {
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
+</html>

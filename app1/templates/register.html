@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Pension System Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('{% static 'back1.jpg' %}') no-repeat center;
+      background-size: cover;
+      color:white;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(0,0,0, 0.5); /* Adjust the alpha value here for transparency */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      color:black;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px; /* Added margin bottom for space between label and input */
+      color:white;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="file"],
+    .form-group input[type="text"] {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color:black;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"] {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group input[type="file"] {
+      margin-top: 5px;
+      width:90%;
+    }
+
+    .register-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .register-btn:hover {
+      background-color: transparent;
+      color: #007bff;
+      border: 1px solid #007bff;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('{% static 'back1.jpg' %}') no-repeat center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:white;
+      position:center;
+
+  }
+  .left-panel {
+      width: 70px;
+      height: 100vh; /* Adjust the height of the left panel as needed */
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      transition: width 0.3s; /* Smooth transition for width change */
+  }
+
+  .left-panel:hover {
+      width: 250px; /* Expand width on hover */
+  }
+
+  .content {
+      flex-grow: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      color: white;
+      transition: margin-left 0.3s; /* Smooth transition for margin change */
+  }
+  .container{
+      position:relative;
+      left:7%;
+  }
+  h1 {
+      margin-top: 0;
+  }
+
+  a {
+      color: #fff;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+
+  ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      margin-bottom: 15px; /* Increased spacing between items */
+      display: flex; /* Use flexbox to align icon and text */
+      align-items: center; /* Align items vertically */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      position: relative; /* Position for absolute text */
+      color:white;
+  }
+
+  .icon {
+      margin-right: 20px; /* Space between icon and text */
+      margin-bottom: 15px; /* Increased spacing between icons */
+  }
+
+  .separator {
+      border-bottom: 1px solid #666;
+      margin: 15px 0; /* Increased margin */
+  }
+
+  .important {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-top: 20px; /* Spacing for important items */
+  }
+
+  .icon-text {
+      display: none; /* Hide the text by default */
+      position: absolute; /* Position the text absolutely */
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+      color: white; /* Adjust the color of the text */
+      padding: 5px 10px; /* Padding for the text */
+      border-radius: 5px; /* Rounded corners */
+      pointer-events: none; /* Ignore pointer events to allow clicking through */
+      transition: opacity 0.3s; /* Smooth transition for opacity change */
+  }
+  
+  li:hover .icon-text {
+      display: inline-block; /* Show text on icon hover */
+      opacity: 1; /* Show the text */
+      left: 20px; /* Adjust the left position as needed */
+      top: 50%; /* Align text vertically */
+      transform: translateY(-50%);
+  }
+  
+  
+  
+
+  .icon:hover + .content {
+      margin-left: 250px; /* Move content to the right when left panel is visible */
+  }
+
+  .feature {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #666;
+      padding-bottom: 20px;
+  }
+
+  .feature:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+  }
+
+  .feature h3 {
+      margin-top: 0;
+  }
+
+
+  .feature p {
+      margin-bottom: 10px;
+  }
+  </style>
+</head>
+<body>
+  <div class="left-panel">
+    <ul>
+        <li class="important" onclick="scrollToSection('home')"><i class="fas fa-home icon"></i><span class="icon-text">Home</span></li>
+        <li onclick="scrollToSection('dashboard')"><i class="fas fa-chart-line icon"></i><span class="icon-text">Dashboard</span></li>
+        <li onclick="scrollToSection('account')"><i class="fas fa-user icon"></i><span class="icon-text">Account</span></li>
+        <li onclick="scrollToSection('payments')"><i class="fas fa-money-bill icon"></i><span class="icon-text">Payments</span></li>
+        <li onclick="scrollToSection('notifications')"><i class="fas fa-bell icon"></i><span class="icon-text">Notifications</span></li>
+        <li onclick="scrollToSection('settings')"><i class="fas fa-cog icon"></i><span class="icon-text">Settings</span></li>
+        <li class="separator"></li>
+        <li onclick="scrollToSection('schedule')"><i class="fas fa-calendar-alt icon"></i><span class="icon-text">Schedule</span></li>
+        <li onclick="scrollToSection('documents')"><i class="fas fa-file-alt icon"></i><span class="icon-text">Documents</span></li>
+        <li onclick="scrollToSection('agreements')"><i class="fas fa-handshake icon"></i><span class="icon-text">Agreements</span></li>
+        <li onclick="scrollToSection('about')"><a href="{% url 'about' %}"><i class="fas fa-info-circle icon"></i><span class="icon-text">About</span></a></li>
+        <li onclick="scrollToSection('contact')"><i class="fas fa-phone-alt icon"></i><span class="icon-text">Contact</span></li>
+
+        <li onclick="scrollToSection('signup')"><a href="{% url 'register' %}"><i class="fas fa-user-plus icon"></i><span class="icon-text">Sign Up</span></a></li>
+        <!-- Add more functionalities here -->
+    </ul>
+</div>
+  <div class="container">
+    <h2>E-Pension System Registration</h2>
+    <form action="{% url 'home1' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="aadhar">Aadhar Card:</label>
+        <input type="text" id="aadhar" name="aadhar" required>
+      </div>
+      <div class="form-group">
+        <label for="pensionId">Pension ID:</label>
+        <input type="text" id="pensionId" name="pensionId" required>
+      </div>
+      <div class="form-group">
+        <label for="OTP">One -Time password:</label>
+        <input type="text" id="OTP" name="OTP" required>
+      </div>
+      <div class="form-group">
+        <label for="photo">Upload Face Photo (JPG format):</label>
+        <input type="file" id="photo" name="photo" accept="image/jpg" required>
+      </div>
+        <button type="submit" class="register-btn">Register</button>
+        {% if error_message %}
+                    <p>{{ error_message }}</p>  <!-- Display error message if it exists -->
+                {% endif %}
+    </form>
+  </div>
+</body>
+</html>

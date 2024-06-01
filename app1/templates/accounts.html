@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pension System - Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left-panel {
+            width: 70px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white; /* Add this line to set the text color to white */
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: width 0.3s;
+        }
+        
+
+        .left-panel:hover {
+            width: 250px;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            transition: margin-left 0.3s;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+        }
+
+        .icon {
+            margin-right: 10px;
+            color:white;
+        }
+
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0;
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .icon-text {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .icon:hover .icon-text {
+            display: inline-block;
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        .icon:hover + .content {
+            margin-left: 250px;
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        .feature p {
+            margin-bottom: 10px;
+        }
+        
+        .icon {
+            margin-right: 20px; /* Space between icon and text */
+            margin-bottom: 15px; /* Increased spacing between icons */
+            color:white;
+        }
+
+        .separator {
+            border-bottom: 1px solid #666;
+            margin: 15px 0; /* Increased margin */
+        }
+
+        .important {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px; /* Spacing for important items */
+        }
+
+        .icon-text {
+            display: none; /* Hide the text by default */
+            position: absolute; /* Position the text absolutely */
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            color: white; /* Adjust the color of the text */
+            padding: 5px 10px; /* Padding for the text */
+            border-radius: 5px; /* Rounded corners */
+            pointer-events: none; /* Ignore pointer events to allow clicking through */
+            transition: opacity 0.3s; /* Smooth transition for opacity change */
+        }
+        
+        li:hover .icon-text {
+            display: inline-block; /* Show text on icon hover */
+            opacity: 1; /* Show the text */
+            left: 70px; /* Adjust the left position as needed */
+            top: 50%; /* Align text vertically */
+            transform: translateY(-50%);
+        }
+        
+
+.details-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    position: relative; 
+}
+
+.detail {
+    flex: 0 0 48%; 
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    color: #fff;
+}
+
+.detail-label,
+.detail-value {
+    display: inline-block;
+    width: 49%; 
+}
+
+
+    </style>
+</head>
+
+<body style="background: url('{% static 'back1.jpg' %}') no-repeat center; background-size: cover; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="left-panel" style="color:white">
+        <ul>
+            <li onclick="scrollToSection('home')"><i class="fas fa-home icon"></i><span class="icon-text">Home</span></li>
+            <li onclick="scrollToSection('dashboard')"><i class="fas fa-chart-line icon"></i><span class="icon-text">Dashboard</span></li>
+            <li class="important" onclick="scrollToSection('account')"><i class="fas fa-user icon"></i><span class="icon-text">Account</span></li>
+            <li onclick="scrollToSection('payments')"><i class="fas fa-money-bill icon"></i><span class="icon-text">Payments</span></li>
+            <li onclick="scrollToSection('notifications')"><i class="fas fa-bell icon"></i><span class="icon-text">Notifications</span></li>
+            <li onclick="scrollToSection('settings')"><i class="fas fa-cog icon"></i><span class="icon-text">Settings</span></li>
+            <li class="separator"></li>
+            <li onclick="scrollToSection('schedule')"><i class="fas fa-calendar-alt icon"></i><span class="icon-text">Schedule</span></li>
+            <li onclick="scrollToSection('documents')"><i class="fas fa-file-alt icon"></i><span class="icon-text">Documents</span></li>
+            <li onclick="scrollToSection('agreements')"><i class="fas fa-handshake icon"></i><span class="icon-text">Agreements</span></li>
+            <li onclick="scrollToSection('about')"><i class="fas fa-info-circle icon"></i><span class="icon-text">About</span></li>
+            <li onclick="scrollToSection('contact')"><i class="fas fa-phone-alt icon"></i><span class="icon-text">Contact</span></li>
+            <li onclick="scrollToSection('login')"><i class="fas fa-sign-in-alt icon"></i><span class="icon-text">Logout</span></li>
+            <li onclick="scrollToSection('signup')"><i class="fas fa-user-plus icon"></i><span class="icon-text">Sign Up</span></li>
+        </ul>
+    </div>
+    <div class="content">
+        
+
+        <div class="feature">
+            <h3>Account Information</h3>
+            <div class="details-box">
+                <div class="detail">
+                    <div class="detail-label">Name: </div>
+                    <div class="detail-value">ravanth</div>
+                </div>
+                <div class="detail">
+                    <div class="detail-label">Age:</div>
+                    <div class="detail-value">20</div>
+                </div>
+                <div class="detail">
+                    <div class="detail-label">Gender:</div>
+                    <div class="detail-value">male</div>
+                </div>
+                
+               
+                <div class="detail">
+                    <div class="detail-label">Phone:</div>
+                    <div class="detail-value">9384973755</div>
+                </div>
+            </div>
+        </div>
+        <div class="feature">
+            <h3>Payment Details</h3>
+            <div class="details-box">
+                <div class="detail">
+                    <div class="detail-label">Bank Name:</div>
+                    <div class="detail-value">HDFC Bank</div>
+                </div>
+                <div class="detail">
+                    <div class="detail-label">Account Number:</div>
+                    <div class="detail-value">1234567890</div>
+                </div>
+                <div class="detail">
+                    <div class="detail-label">Payment Method:</div>
+                    <div class="detail-value">Direct Deposit</div>
+                </div>
+              
+                <div class="detail">
+                    <div class="detail-label">Payment Frequency:</div>
+                    <div class="detail-value">Monthly</div>
+                </div>
+            </div>
+        </div>
+        <div class="feature">
+            <h3>Change Password</h3>
+            <div class="details-box">
+                <form id="password-form">
+                    <div class="detail">
+                        <label for="current-password" class="detail-label">Current Password:</label>
+                        <input type="password" id="current-password" name="current-password">
+                    </div>
+                    <div class="detail">
+                        <label for="new-password" class="detail-label">New Password:</label>
+                        <input type="password" id="new-password" name="new-password">
+                    </div>
+                    <div class="detail">
+                        <label for="confirm-password" class="detail-label">Confirm New Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password">
+                    </div>
+                    <div class="detail">
+                        <input type="submit" value="Save Changes">
+                    </div>
+                </form>
+                <div id="password-message"></div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <script>
+        document.getElementById('password-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var newPassword = document.getElementById('new-password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var messageElement = document.getElementById('password-message');
+            var saveChangesButton = document.querySelector('#password-form input[type="submit"]');
+    
+            if (newPassword !== confirmPassword) {
+                saveChangesButton.value = 'Passwords do not match.';
+            } else {
+                saveChangesButton.value = 'Password changed successfully'; 
+                saveChangesButton.disabled = true; 
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

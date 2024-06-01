@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video container with controls -->
+    <div id="video-container">
+        <video id="fullscreen-video" autoplay controls>
+            <source src="{% static 'logo.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Video controls -->
+        <div id="video-controls">
+            <!-- You can add additional controls here if needed -->
+            <!-- Example: Play/Pause button -->
+            <button id="play-pause-button">Play/Pause</button>
+        </div>
+    </div>
+
+    <script>
+        // Get the video element
+        const video = document.getElementById('fullscreen-video');
+        // Get the video container
+        const videoContainer = document.getElementById('video-container');
+
+        // When the video ends, redirect to the home page
+        video.onended = function() {
+            window.location.href = "{% url 'main' %}";
+        };
+
+        // Make the video fullscreen
+        videoContainer.requestFullscreen = videoContainer.requestFullscreen || videoContainer.webkitRequestFullscreen || videoContainer.mozRequestFullScreen || videoContainer.msRequestFullscreen;
+        if (videoContainer.requestFullscreen) {
+            videoContainer.requestFullscreen();
+        }
+
+        // Additional controls (Play/Pause button)
+        const playPauseButton = document.getElementById('play-pause-button');
+        playPauseButton.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                video.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+    </script>
+</body>
+</html>
